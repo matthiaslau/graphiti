@@ -204,7 +204,7 @@ async def edge_search(
 
     edge_uuid_map = {edge.uuid: edge for result in search_results for edge in result}
 
-    reranked_uuids: list[str] = []
+    reranked_uuids: list[str] = [edge.uuid for result in search_results for edge in result]
     if config.reranker == EdgeReranker.rrf or config.reranker == EdgeReranker.episode_mentions:
         search_result_uuids = [[edge.uuid for edge in result] for result in search_results]
 
@@ -298,7 +298,7 @@ async def node_search(
     search_result_uuids = [[node.uuid for node in result] for result in search_results]
     node_uuid_map = {node.uuid: node for result in search_results for node in result}
 
-    reranked_uuids: list[str] = []
+    reranked_uuids: list[str] = [node.uuid for result in search_results for node in result]
     if config.reranker == NodeReranker.rrf:
         reranked_uuids = rrf(search_result_uuids, min_score=reranker_min_score)
     elif config.reranker == NodeReranker.mmr:
@@ -364,7 +364,7 @@ async def episode_search(
     search_result_uuids = [[episode.uuid for episode in result] for result in search_results]
     episode_uuid_map = {episode.uuid: episode for result in search_results for episode in result}
 
-    reranked_uuids: list[str] = []
+    reranked_uuids: list[str] = [episode.uuid for result in search_results for episode in result]
     if config.reranker == EpisodeReranker.rrf:
         reranked_uuids = rrf(search_result_uuids, min_score=reranker_min_score)
 
@@ -416,7 +416,7 @@ async def community_search(
         community.uuid: community for result in search_results for community in result
     }
 
-    reranked_uuids: list[str] = []
+    reranked_uuids: list[str] = [community.uuid for result in search_results for community in result]
     if config.reranker == CommunityReranker.rrf:
         reranked_uuids = rrf(search_result_uuids, min_score=reranker_min_score)
     elif config.reranker == CommunityReranker.mmr:

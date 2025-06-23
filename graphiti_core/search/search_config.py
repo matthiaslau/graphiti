@@ -79,7 +79,7 @@ class CommunityReranker(Enum):
 
 class EdgeSearchConfig(BaseModel):
     search_methods: list[EdgeSearchMethod]
-    reranker: EdgeReranker = Field(default=EdgeReranker.rrf)
+    reranker: EdgeReranker | None = Field(default=EdgeReranker.rrf)
     sim_min_score: float = Field(default=DEFAULT_MIN_SCORE)
     mmr_lambda: float = Field(default=DEFAULT_MMR_LAMBDA)
     bfs_max_depth: int = Field(default=MAX_SEARCH_DEPTH)
@@ -87,7 +87,7 @@ class EdgeSearchConfig(BaseModel):
 
 class NodeSearchConfig(BaseModel):
     search_methods: list[NodeSearchMethod]
-    reranker: NodeReranker = Field(default=NodeReranker.rrf)
+    reranker: NodeReranker | None = Field(default=NodeReranker.rrf)
     sim_min_score: float = Field(default=DEFAULT_MIN_SCORE)
     mmr_lambda: float = Field(default=DEFAULT_MMR_LAMBDA)
     bfs_max_depth: int = Field(default=MAX_SEARCH_DEPTH)
@@ -95,7 +95,7 @@ class NodeSearchConfig(BaseModel):
 
 class EpisodeSearchConfig(BaseModel):
     search_methods: list[EpisodeSearchMethod]
-    reranker: EpisodeReranker = Field(default=EpisodeReranker.rrf)
+    reranker: EpisodeReranker | None = Field(default=EpisodeReranker.rrf)
     sim_min_score: float = Field(default=DEFAULT_MIN_SCORE)
     mmr_lambda: float = Field(default=DEFAULT_MMR_LAMBDA)
     bfs_max_depth: int = Field(default=MAX_SEARCH_DEPTH)
@@ -103,7 +103,7 @@ class EpisodeSearchConfig(BaseModel):
 
 class CommunitySearchConfig(BaseModel):
     search_methods: list[CommunitySearchMethod]
-    reranker: CommunityReranker = Field(default=CommunityReranker.rrf)
+    reranker: CommunityReranker | None = Field(default=CommunityReranker.rrf)
     sim_min_score: float = Field(default=DEFAULT_MIN_SCORE)
     mmr_lambda: float = Field(default=DEFAULT_MMR_LAMBDA)
     bfs_max_depth: int = Field(default=MAX_SEARCH_DEPTH)
