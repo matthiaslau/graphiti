@@ -83,7 +83,9 @@ def label_propagation(projection: dict[str, list[Neighbor]]) -> list[list[str]]:
     # 3. Ties are broken by going to the largest community
     # 4. Continue until no communities change during propagation
 
+    MAX_ITERATIONS = 100  # Prevent infinite loops
     community_map = {uuid: i for i, uuid in enumerate(projection.keys())}
+    iteration = 0
 
     while True:
         no_change = True
@@ -112,6 +114,10 @@ def label_propagation(projection: dict[str, list[Neighbor]]) -> list[list[str]]:
                 no_change = False
 
         if no_change:
+            break
+
+        iteration += 1
+        if iteration >= MAX_ITERATIONS:
             break
 
         community_map = new_community_map
