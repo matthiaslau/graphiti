@@ -247,7 +247,7 @@ async def determine_entity_community(
         c.group_id AS group_id,
         c.created_at AS created_at, 
         c.summary AS summary,
-        n.name_embedding AS name_embedding
+        c.name_embedding AS name_embedding
     """,
         entity_uuid=entity.uuid,
         database_=DEFAULT_DATABASE,
@@ -266,7 +266,7 @@ async def determine_entity_community(
         c.group_id AS group_id,
         c.created_at AS created_at, 
         c.summary AS summary,
-        n.name_embedding AS name_embedding
+        c.name_embedding AS name_embedding
     """,
         entity_uuid=entity.uuid,
         database_=DEFAULT_DATABASE,
