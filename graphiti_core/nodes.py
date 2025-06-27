@@ -489,7 +489,8 @@ class CommunityNode(Node):
             n.name AS name,
             n.group_id AS group_id,
             n.created_at AS created_at, 
-            n.summary AS summary
+            n.summary AS summary,
+            n.name_embedding AS name_embedding
         """,
             uuids=uuids,
             database_=DEFAULT_DATABASE,
@@ -522,7 +523,8 @@ class CommunityNode(Node):
             n.name AS name,
             n.group_id AS group_id,
             n.created_at AS created_at, 
-            n.summary AS summary
+            n.summary AS summary,
+            n.name_embedding AS name_embedding
         ORDER BY n.uuid DESC
         """
             + limit_query,
